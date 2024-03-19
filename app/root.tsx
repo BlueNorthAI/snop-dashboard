@@ -11,17 +11,17 @@ import {
 
 import { getUser } from "~/session.server";
 
+import appstylesheetUrl from "./styles/app.css";
 import kendoStylesheetUrl from "./styles/kendo.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 
 
-export const links: LinksFunction = () => {
-   return [
-     { rel: "stylesheet", href: tailwindStylesheetUrl },
-     { rel: "stylesheet", href: kendoStylesheetUrl },
-     // { rel: "stylesheet", href: appStylesHref },
-   ];
-}
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: tailwindStylesheetUrl },
+  // { rel: "stylesheet", href: appstylesheetUrl },
+  { rel: "stylesheet", href: kendoStylesheetUrl },
+];
+
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   return json({ user: await getUser(request) });

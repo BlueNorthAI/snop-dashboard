@@ -2,8 +2,48 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from "react";
 import { TableCellsIcon, ArrowTrendingUpIcon, ChartBarIcon,
-  UserCircleIcon, CpuChipIcon, Squares2X2Icon, Cog8ToothIcon, ChatBubbleBottomCenterTextIcon, TicketIcon,ExclamationTriangleIcon, WrenchScrewdriverIcon } from "@heroicons/react/20/solid";
+  UserCircleIcon, CpuChipIcon, Squares2X2Icon, Cog8ToothIcon, ChatBubbleBottomCenterTextIcon, TicketIcon,ExclamationTriangleIcon, WrenchScrewdriverIcon,ArrowRightOnRectangleIcon,TruckIcon } from "@heroicons/react/20/solid";
 import { Outlet, NavLink, Link } from "@remix-run/react";
+
+// const menus = [
+//   {
+//     name: "Dashboard",
+//     to: "/demo/dashboard/demand",
+//     icon: ChartBarIcon,
+//     current: true,
+//   },
+//   {
+//     name: "Input Data",
+//     to: "/demo/input",
+//     icon: CpuChipIcon,
+//     current: false,
+//   },
+//   {
+//     name: "Scenario",
+//     to: "/demo/scenario",
+//     icon: TableCellsIcon,
+//     current: false,
+//   },
+//   {
+//     name: "Optimizer",
+//     to: "/demo/optimize",
+//     icon: CpuChipIcon,
+//     current: false,
+//   },
+//   {
+//     name: "Truck",
+//     to: "/demo/truck",
+//     icon: TruckIcon,
+//     current: false,
+//   },
+//   {
+//     name: "Scheduler",
+//     to: "/demo/scheduler",
+//     icon: TableCellsIcon,
+//     current: false,
+//   },
+// ];
+
 
 const menus = [
   {
@@ -36,7 +76,7 @@ const menus = [
   { name: "User", to: "/demo/profile", icon: UserCircleIcon, current: false },
   {
     name: "Chat",
-    to: "/demo/chat",
+    to: "/demo/chatuireact",
     icon: ChatBubbleBottomCenterTextIcon,
     current: false,
   },
@@ -59,9 +99,15 @@ const menus = [
     current: false,
   },
   {
-    name: "Remix",
-    to: "/demo/remix",
-    icon: WrenchScrewdriverIcon,
+    name: "Truck",
+    to: "/demo/truck",
+    icon: TruckIcon,
+    current: false,
+  },
+  {
+    name: "Scheduler",
+    to: "/demo/scheduler",
+    icon: TableCellsIcon,
     current: false,
   },
 ];
@@ -75,22 +121,18 @@ export default function Sidebar() {
 
   return (
     <div className="flex h-screen">
-      {/* Static sidebar for desktop */}
-
       <div
         className={`bg-blue-900  ${
-          open ? "w-28" : "w-16"
+          open ? "w-20" : "w-16"
         } flex flex-col text-gray-100 duration-500 `}
       >
         <div className="flex-1">
-          <div className="flex items-center justify-center bg-white py-1">
-         
-            <img
-              className="cursor-poniter mx-auto h-14 w-14 justify-center "
-              src={"/assets/logo-4.png"}
-              alt="logo"
+          <div className="flex h-16 items-center justify-center bg-white py-1">
+            <ArrowRightOnRectangleIcon
+              className="h-8 w-8 text-gray-700"
               onClick={() => setOpen(!open)}
             />
+          
           </div>
 
           <nav aria-label="Sidebar" className="flex flex-col items-center">
@@ -104,12 +146,12 @@ export default function Sidebar() {
                       isActive
                         ? "bg-blue-800 text-white"
                         : "text-blue-100 hover:bg-blue-800 hover:text-white",
-                      "group flex w-full flex-col items-center rounded-md p-2 text-xs font-medium"
+                      "group flex w-full flex-col items-center rounded-md p-1 text-xs font-medium",
                     )
                   }
                 >
                   <div className="p-1">
-                    <item.icon className="h-6 w-6" aria-hidden="true" />
+                    <item.icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <h2
                     style={{
@@ -139,11 +181,11 @@ export default function Sidebar() {
             <div
               className={classNames(
                 "text-blue-100 hover:bg-blue-800 hover:text-white",
-                "group flex w-full flex-col items-center rounded-md p-2 text-xs font-medium"
+                "group flex w-full flex-col items-center rounded-md p-2 text-xs font-medium",
               )}
             >
               <div className="p-1">
-                <Squares2X2Icon className="h-6 w-6" aria-hidden="true" />
+                <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
               </div>
               <h2
                 className={`whitespace-pre duration-500 ${
@@ -165,7 +207,7 @@ export default function Sidebar() {
       </div>
 
       {/* appbar */}
-      <div className="flex flex-1 flex-col h-screen  overflow-y-auto bg-gray-100">
+      <div className="flex flex-1 flex-col h-screen overflow-y-auto bg-gray-100">
         <main>
           <Outlet />
         </main>

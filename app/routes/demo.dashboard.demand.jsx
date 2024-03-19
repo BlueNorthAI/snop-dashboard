@@ -169,50 +169,6 @@ export default function DemandRoute() {
                 )}
               </Listbox>
             </span>
-
-            {/* <span className="inline-flex">
-              <Menu as="div" className="relative ml-2 ">
-                <Menu.Button className="inline-flex items-center rounded-md bg-white px-3  py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 ">
-                  Utility
-                  <ChevronDownIcon
-                    className="-mr-1 ml-1.5 h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                  />
-                </Menu.Button>
-
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-200"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items className="absolute right-0  z-10  mt-2 rounded-md bg-gray-100 shadow-lg">
-                    {centericon.map((icons) => (
-                      <div className="inline-flex">
-                        <Menu.Item>
-                          <Link
-                            key={icons.name}
-                            href={icons.to}
-                            className="flex w-40 items-center rounded-lg p-2 text-black transition duration-150 ease-in-out hover:bg-rose-500 hover:text-white"
-                          >
-                            <icons.icon className="flex h-5 w-5 items-center justify-center" />
-
-                            <div className="m-2">
-                              <p className="text-xs font-medium">
-                                {icons.name}
-                              </p>
-                            </div>
-                          </Link>
-                        </Menu.Item>
-                      </div>
-                    ))}
-                  </Menu.Items>
-                </Transition>
-              </Menu>
-            </span> */}
           </div>
         </div>
       </div>
@@ -291,15 +247,6 @@ export default function DemandRoute() {
               </button>
             </div>
 
-            {/* <div className="m-2 pl-2">
-              <button className="flex items-center rounded-lg border p-2 text-gray-500  bg-gray-100 hover:bg-gray-200">
-                <FunnelIcon
-                  className="h-4 w-4 text-gray-600"
-                  aria-hidden="true"
-                />
-                <span className="ml-2 inline-flex font-semibold">Filter</span>
-                </button>
-              </div> */}
           </div>
         </section>
       </div>

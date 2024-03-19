@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { v4 as uuid } from "uuid";
@@ -145,14 +146,15 @@ export default function NewMessageInput () {
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleKeyPressed}
           disabled={
-            selectedConversation &&
-            !selectedConversation.messages[
+            selectedConversation ? !selectedConversation.messages[
               selectedConversation.messages.length - 1
-            ].aiMessage
+            ].aiMessage : null
           }
         />
         <div
-          className="absolute mr-4 transition-[0.4s] "
+          className="absolute mr-4 transition-[0.4s]"
+          role="button"
+          tabIndex={0}
           onClick={handleSendMessage}
         >
           <PaperAirplaneIcon className="h-4 w-4 text-gray-800 hover:text-gray-700" />

@@ -7,12 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  slug     String @id
-  title    String
-  markdown String
-}
-
 model User {
   id        String    @id @default(cuid())
   email     String    @unique
@@ -38,319 +32,229 @@ model Note {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model AttributeMaster {
-  attribute_code        String
-  site_level_id         Int?
-  column_name           String?
-  attribute_description String?
-  column_mapping        String?
-  seller_level_id       Int
-  product_level_id      Int
-  dimensionality        Int?
-  nav_tree              String?
-  layout                Int?
-  sys_nc_type           String?
-  level_id              Int?
+model PlanInput {
+  id                    Int       @id @default(autoincrement())
+  customer              String
+  site                  String
+  sku                   String
+  Jan                   Int?
+  Feb                   Int?
+  Mar                   Int?
+  Apr                   Int?
+  May                   Int?
+  Jun                   Int?
+  Jul                   Int?
+  Aug                   Int?
+  Sep                   Int?
+  Oct                   Int?
+  Nov                   Int?
+  Dec                   Int?
+  material_cost_pu      Int?
+  inv_hold_cost_pupm    Int?
+  stockout_cost_pupm    Int?
+  hiring_cost_pw        Int?
+  firing_cost_pw        Int?
+  labor_hrs_pu          Int?
+  worker_cost_pm        Int?
+  overtime_cost_phr     Int?
+  outsourcing_cost_pu   Int?
+  max_work_hrs_pwpm     Int?
+  max_overtime_hrs_pwpm Int?
+  inventory_start       Int?
+  inventory_end         Int?
+  backlog_start         Int?
+  backlog_end           Int?
+  num_workers_start     Int?
+  min_end_workers       Int?
+  max_end_workers       Int?
+  CreatedAt             DateTime? @default(now())
 
-  @@id([attribute_code, seller_level_id, product_level_id])
-  @@index([site_level_id], map: "attribute_master_site_level_id_index")
-  @@index([seller_level_id], map: "attribute_master_seller_level_id_index")
-  @@index([product_level_id], map: "attribute_master_product_level_id_index")
-  @@map("attribute_master")
+  @@map("PLAN_INPUT")
 }
 
-model CcyConversionMaster {
-  bkt           Int
-  ccy_code      String
-  exchange_rate Float?
+model SnopScenario {
+  id                    Int       @id @default(autoincrement())
+  scenario_id           String?
+  description           String?
+  CreatedAt             DateTime? @default(now())
+  UpdatedAt             DateTime? @default(now())
+  module                String?   @default("Sales & Operations Planning")
+  Status                String?
+  customer              String
+  site                  String
+  sku                   String
+  Jan                   Int?
+  Feb                   Int?
+  Mar                   Int?
+  Apr                   Int?
+  May                   Int?
+  Jun                   Int?
+  Jul                   Int?
+  Aug                   Int?
+  Sep                   Int?
+  Oct                   Int?
+  Nov                   Int?
+  Dec                   Int?
+  material_cost_pu      Int?
+  inv_hold_cost_pupm    Int?
+  stockout_cost_pupm    Int?
+  hiring_cost_pw        Int?
+  firing_cost_pw        Int?
+  labor_hrs_pu          Int?
+  worker_cost_pm        Int?
+  overtime_cost_phr     Int?
+  outsourcing_cost_pu   Int?
+  max_work_hrs_pwpm     Int?
+  max_overtime_hrs_pwpm Int?
+  inventory_start       Int?
+  inventory_end         Int?
+  backlog_start         Int?
+  backlog_end           Int?
+  num_workers_start     Int?
+  min_end_workers       Int?
+  max_end_workers       Int?
 
-  @@id([bkt, ccy_code])
-  @@map("ccy_conversion_master")
+  @@map("SNOP_SCENARIO")
 }
 
-model CurrencyConversion {
-  bkt           Int
-  currency_code String
-  exchange_rate Float?
+model snop_archive {
+  id                    Int       @id @default(autoincrement())
+  scenario_id           String?
+  description           String?
+  CreatedAt             DateTime? @default(now())
+  UpdatedAt             DateTime? @default(now())
+  module                String?   @default("Sales & Operations Planning")
+  Status                String?
+  customer              String
+  site                  String
+  sku                   String
+  Jan                   Int?
+  Feb                   Int?
+  Mar                   Int?
+  Apr                   Int?
+  May                   Int?
+  Jun                   Int?
+  Jul                   Int?
+  Aug                   Int?
+  Sep                   Int?
+  Oct                   Int?
+  Nov                   Int?
+  Dec                   Int?
+  material_cost_pu      Int?
+  inv_hold_cost_pupm    Int?
+  stockout_cost_pupm    Int?
+  hiring_cost_pw        Int?
+  firing_cost_pw        Int?
+  labor_hrs_pu          Int?
+  worker_cost_pm        Int?
+  overtime_cost_phr     Int?
+  outsourcing_cost_pu   Int?
+  max_work_hrs_pwpm     Int?
+  max_overtime_hrs_pwpm Int?
+  inventory_start       Int?
+  inventory_end         Int?
+  backlog_start         Int?
+  backlog_end           Int?
+  num_workers_start     Int?
+  min_end_workers       Int?
+  max_end_workers       Int?
 
-  @@id([bkt, currency_code])
-  @@map("currency_conversion")
+  @@map("SNOP_ARCHIVE")
 }
 
-model CustomerMaster {
-  scenario_name     String
-  customer          String
-  customer_desc     String?
-  all_sales         String?
-  all_sales_desc    String?
-  region            String?
-  region_desc       String?
-  country           String?
-  country_desc      String?
-  customer_priority String?
-  customer_type     String?
+model truck_scenario {
+  id                   Int     @id @default(autoincrement())
+  origin               String?
+  destination          String?
+  distance             String?
+  backhaul             String?
+  purchase_cost        Int?
+  mileage_with_load    Int?
+  mileage_without_load Int?
+  maintenance          Int?
+  capacity             Int?
+  annual_distance      Int?
+  life                 Int?
+  diesel_price         Int?
+  loading_unloading    Int?
+  toll                 Int?
+  route_expenses       Int?
+  driver_expenses      Int?
+  tyres                Int?
+  bucket               String?
 
-  @@id([scenario_name, customer])
-  @@map("customer_master")
+  @@map("TRUCK_SCENARIO")
 }
 
-model DemandCube {
-  customer               String
-  site                   String
-  sku                    String
-  bucket                 Int
-  edit                   Int?
-  lifecycle_code         String?
-  order_id               String?
-  booking_id             String?
-  invoice_id             String?
-  selling_price          Float?
-  mkt_fcst_qty           Int?
-  cons_fcst_qty          Int?
-  cust_fcst_qty          Int?
-  fin_fcst_qty           Int?
-  mnth2_sales_fcst_qty   Int?
-  mnth3_sales_fcst_qty   Int?
-  fcst_accuracy          Float?
-  order_date             DateTime?
-  order_status           String?
-  order_return           Int?
-  order_cancel           Int?
-  order_open             Int?
-  order_past_due         Int?
-  order_discount         Int?
-  ord_invoice_cycle_time Float?
-  ship_date              DateTime?
-  ship_chnl_type         String?
-  ship_chnl_qty          Float?
-  deliv_date             DateTime?
-  late_ship              Int?
-  ontime_ship            Int?
-  perfect_order          Int?
-  sales_qty              Int?
-  gross_sales            Float?
-  mape                   Float?
-  ontime_infull          Float?
-  backlog                Int?
+model truck_details {
+  id                        Int     @id @default(autoincrement())
+  truck_type                String?
+  truck_cost                Int?
+  fab_cost                  Int?
+  total_cost                Int?
+  resale_value              Int?
+  net_total_cost            Int?
+  life                      Int?
+  capacity                  Int?
+  dis_covered_per_yr        Int?
+  dis_covered_with_load     Int?
+  insurance_cost            Int?
+  permits_for_truck         Int?
+  emi_interest              Int?
+  road_tax_truck            Int?
+  reg_fc_renewal            Int?
+  total_fixed_cost          Int?
+  mileage_with_load         Int?
+  mileage_without_load      Int?
+  diesel_cost               Int?
+  num_of_tyres              Int?
+  tyres_cost                Int?
+  oil_cost                  Int?
+  maintenance_cost          Int?
+  loading_cost_per_trip     Int?
+  loading_unloading_cost    Int?
+  toll_expenses_inr         Int?
+  toll_expenses             Int?
+  rto_pc_check_post_inr     Int?
+  rto_pc_check_post         Int?
+  total_variable_cost       Int?
+  driver_cleaner_salary     Int?
+  driver_cleaner_batta      Int?
+  gen_admin_exp             Int?
+  total_admin_expenses      Int?
+  return_sale               Int?
+  re_operating_cost_yrs     Int?
+  re_operating_cost_trip    Int?
+  workable_freight_per_trip Int?
+  cost_per_bike             Int?
+  dis_coverd_empty          Int?
 
-  @@id([customer, site, sku, bucket])
-  @@map("demand_cube")
+  @@map("TRUCK_DETAILS")
 }
 
-model DimensionMaster {
-  dimension_id     Int     @id @default(autoincrement())
-  dimension_code   String?
-  description      String?
-  leaf_column_name String?
-  status           String?
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model snop_incidents {
+  id          Unsupported("int auto_increment")? @id
+  incident_id String?
+  status      String?
+  priority    String?
+  ticket_type String?
+  description String?
 
-  @@map("dimension_master")
+  @@map("SNOP_INCIDENTS")
+  @@ignore
 }
 
-model DimensionMemberRelationship {
-  scenario_name String
-  site          String
-  customer      String
-  product       String
+model snop_truckoutput {
+  id                  Int  @id @default(autoincrement())
+  variable_cost_trip  Int?
+  fixed_cost_trip     Int?
+  admin_cost_per_trip Int?
+  return_sale_trip    Int?
+  variable_cost       Int?
+  fixed_cost          Int?
+  admin_cost          Int?
+  profit_unit         Int?
 
-  @@id([scenario_name, site, customer, product])
-  @@map("dimension_member_relationship")
-}
-
-model HierarchyMaster {
-  hierarchy_id          Int     @id @default(autoincrement())
-  hierarchy_code        String
-  hierarchy_description String?
-  dimension_id          Int?
-
-  @@index([dimension_id], map: "hierarchy_master_dimension_id_index")
-  @@map("hierarchy_master")
-}
-
-model IntegratedDimMeasure {
-  customer             String
-  site                 String
-  sku                  String
-  bucket               Int
-  edit                 Int?
-  lifecycle_code       String?
-  plan_ccf             Float?
-  actual_ccf           Float?
-  plan_mar             Float?
-  actual_mar           Float?
-  mkt_fcst_qty         Int?
-  cons_fcst_qty        Int?
-  cust_fcst_qty        Int?
-  fin_fcst_qty         Int?
-  eoh_w                Int?
-  on_hand              Int?
-  prev_sales_fcst_qty  Int?
-  sales_fcst_qty       Int?
-  sell_in_qty          Int?
-  sell_th_qty          Int?
-  gross_sales          Int?
-  mnth2_sales_fcst_qty Int?
-  mnth3_sales_fcst_qty Int?
-  fin_dep_amort_cost   Float?
-  internal_exp         Float?
-  market_exp           Float?
-  other_inc_exp        Int?
-  pos_qty              Int?
-  prod_cost            Float?
-  salary_cost          Float?
-  sales_allow          Float?
-  ship_cost            Float?
-  transp_cost          Float?
-  selling_price        Float?
-  target_plan          Int?
-  tax                  Float?
-  te_cost              Float?
-
-  @@id([customer, site, sku, bucket])
-  @@map("integrated_dim_measure")
-}
-
-model LevelMaster {
-  level_id          Int     @id @default(autoincrement())
-  level_code        String?
-  column_name       String
-  level_description String?
-  dimension_id      Int?
-  link_data_table   String?
-  hierarchy_id      Int?
-  child_level_id    Int?
-
-  @@index([dimension_id], map: "level_master_dimension_id_index")
-  @@map("level_master")
-}
-
-model level_relationship {
-  hierarchy_id    Int
-  child_level_id  Int
-  parent_level_id Int
-
-  @@id([hierarchy_id, child_level_id])
-  @@index([parent_level_id], map: "level_relationship_parent_level_id_index")
-  @@index([parent_level_id, child_level_id], map: "level_relationship_parent_level_id_child_level_id_index")
-  @@index([hierarchy_id], map: "level_relationship_hierarchy_id_index")
-  @@index([child_level_id], map: "level_relationship_child_level_id_index")
-  @@map("level_relationship")
-}
-
-model MeasureMaster {
-  measure_id          Int     @id @default(autoincrement())
-  measure_code        String?
-  measure_description String?
-  measure_type        String?
-  number_format       String?
-  column_name         String?
-  rw_flag             String?
-  computation_type    String?
-  expression          String?
-  site_io_level_id    Int?
-  seller_io_level_id  Int?
-  product_io_level_id Int?
-  time_io_level_id    Int?
-  category1           String?
-  category2           String?
-  ccy_base            String?
-  data_tbl_name       String?
-  aggregation         String?
-  disaggregation      String?
-  copy_to_archive     Int?
-  copy_to_history     Int?
-  waterfall           Int?
-
-  @@map("measure_master")
-}
-
-model ProductCustomer {
-  scenario_name String
-  sku           String
-  customer      String
-
-  @@id([scenario_name, sku, customer])
-  @@map("product_customer")
-}
-
-model ProductMaster {
-  scenario_name       String
-  sku                 String
-  unit_price          Int?
-  category            String?
-  all_products        String?
-  all_products_desc   String?
-  product_group       String?
-  product_group_desc  String?
-  product_family      String?
-  product_family_desc String?
-  calendar_pref       Int?
-  product_color       String?
-
-  @@id([scenario_name, sku])
-  @@map("product_master")
-}
-
-model ProductSiteCustomer {
-  scenario_name String
-  sku           String
-  site          String
-  customer      String
-
-  @@id([scenario_name, sku, site, customer])
-  @@map("product_site_customer")
-}
-
-model ProductSiteMaster {
-  scenario_name             String
-  sku                       String
-  site                      String
-  replenish_policy          String?
-  is_flexible               Int?
-  rank                      Int?
-  default_min_on_hand       Int?
-  default_max_on_hand       Int?
-  column_name               Int?
-  default_days_of_coverage  Int?
-  default_max_days_coverage Int?
-
-  @@id([scenario_name, sku, site])
-  @@map("product_site_master")
-}
-
-model SiteMaster {
-  scenario_name  String
-  site           String
-  site_desc      String?
-  site_type      String?
-  all_sites      String?
-  all_sites_desc String?
-  local_currency String?
-
-  @@id([scenario_name, site])
-  @@map("site_master")
-}
-
-model TimeMaster {
-  time_bucket_id    Int     @id @default(autoincrement())
-  bucket_date       String?
-  bucket_date_desc  String?
-  all_cal_time      Float?
-  all_cal_time_desc String?
-  cal_year          Int?
-  cal_year_desc     String?
-  cal_qtr           Int?
-  cal_qtr_desc      String?
-  cal_month         Int?
-  cal_month_desc    String?
-  all_fsc_time      Float?
-  all_fsc_time_desc String?
-  fsc_year          Int?
-  fsc_year_desc     String?
-  fsc_qtr           Int?
-  fsc_qtr_desc      String?
-  fsc_month         Int?
-  fsc_month_desc    String?
-
-  @@map("time_master")
+  @@map("SNOP_TRUCKOUTPUT")
 }

@@ -179,7 +179,7 @@ export default function SearchParams() {
         />
       </button>
 
-      <div className="mx-auto mt-4 max-w-4xl  rounded-lg bg-white p-4 shadow-xl">
+      {/* <div className="mx-auto mt-4 max-w-4xl  rounded-lg bg-white p-4 shadow-xl">
         <div className="grid grid-cols-3 gap-4">
           {pets.map((pet) => (
             <Pet
@@ -190,7 +190,7 @@ export default function SearchParams() {
             />
           ))}
         </div>
-      </div>
+      </div> */}
 
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>

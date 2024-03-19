@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import NewChatButton from "./NewChatButton";
 import ListItem from "./ListItem";
 import DeleteConversationsButton from "./DeleteConversationsButton";

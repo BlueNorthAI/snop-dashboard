@@ -38,6 +38,39 @@ export const meetingTabs = [
   { name: 'Weekly', href: '#', current: false },
   
 ]
+export const kpiChat = [
+  {
+    Name: "Shipments by channel",
+    Value: "$357M",
+    Trend: "up",
+    TargetAch: 75,
+    container: <WrapperPieChart series={shipmentsData_m} />,
+    status: "Above Target",
+    Explore: <WrapperGrid rowData={carData} />,
+    Analyze: "/demo/dashboard/analysis/demandAnalysis",
+  },
+  {
+    Name: "Cancellations",
+    Value: "$15M",
+    Trend: "up",
+    TargetAch: 90,
+    container: (
+      <WrapperMultiBarChart
+        category={cancelCategories_m}
+        series={cancelSeries_m}
+      />
+    ),
+    status: "Below Target",
+    Explore: <WrapperGrid rowData={carData} />,
+    Analyze: "/demo/dashboard/analysis/demandAnalysis",
+  }
+    
+
+];
+
+
+
+
 
 export const kpiService_m = [
   {

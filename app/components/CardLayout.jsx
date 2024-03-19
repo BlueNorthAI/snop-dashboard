@@ -1,15 +1,8 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 // import { reviewTabs, kpiService_m, kpiCost_m} from '~/loaderdata/dashboard/overview';
 import { ProgressBar } from "@progress/kendo-react-progressbars";
 import { Link, Outlet } from "@remix-run/react";
-import { Fragment } from "react";
-import { Popover, Transition } from "@headlessui/react";
-import {
-  DocumentArrowDownIcon,
-  ShareIcon,
-  ClipboardDocumentCheckIcon,
-  ChevronDownIcon,
-  CheckIcon,
-} from "@heroicons/react/20/solid";
+
 import {
   LightBulbIcon,
   WrenchScrewdriverIcon,
@@ -52,8 +45,6 @@ export default function CardLayout({ mode, tab, kpiData }) {
                     </h1>
                   </div>
                   <div className="ml-auto overflow-x-hidden px-2  text-center text-base font-medium text-gray-700">
-                    {/* Target {' '}
-                     */}
                     <ProgressBar
                       value={kpi.TargetAch}
                       style={{ width: 100, height: 12 }}
@@ -62,46 +53,39 @@ export default function CardLayout({ mode, tab, kpiData }) {
                       emptyStyle={emptyStyles}
                       progressStyle={progressStyles}
                     />
-                    {/* <WrapperBulletChart  value={kpi.TargetAch}  style={{  height: 10 }} labelVisible= {false} emptyStyle={emptyStyles} progressStyle={progressStyles}/> */}
                   </div>
                 </div>
                 <div>{kpi.container}</div>
               </div>
               <div>
-
                 <div className="-mt-px flex divide-x divide-gray-200 bg-gray-50 h-10 ">
                   <div className="flex w-0 flex-1  ">
                     <Link
                       to={kpi.Analyze}
                       className="relative -mr-px inline-flex flex-1 items-center justify-center gap-x-2 border border-transparent text-sm font-semibold hover:bg-rose-500 hover:text-white"
                     >
-                      
                       <span className="py-4 inline-flex flex-1 items-cente justify-center gap-x-3 text-sm font-semibold hover:text-white">
                         <WrenchScrewdriverIcon
-                        className="h-5 w-5"
-                        aria-hidden="true"
-                      />
-                      Analyze
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                        Analyze
                       </span>
                     </Link>
                   </div>
-
-
-
 
                   <div className="-ml-px flex flex-1">
                     <Link
                       to="/demo/dashboard/salesExp"
                       className="relative -mr-px inline-flex flex-1 items-center justify-center gap-x-2  border border-transparent text-sm font-semibold  hover:bg-rose-500 hover:text-white"
-                    > 
-                       <span className="py-4 inline-flex flex-1 items-cente justify-center gap-x-3 text-sm font-semibold hover:text-white">
+                    >
+                      <span className="py-4 inline-flex flex-1 items-cente justify-center gap-x-3 text-sm font-semibold hover:text-white">
                         <CircleStackIcon
-                        className="h-5 w-5"
-                        aria-hidden="true"
-                      />
-                     Explore Data
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                        Explore Data
                       </span>
-                     
                     </Link>
                   </div>
                   <div className="-ml-px flex  flex-1">
@@ -109,14 +93,10 @@ export default function CardLayout({ mode, tab, kpiData }) {
                       to="/benchmark"
                       className="relative -mr-px inline-flex flex-1 items-center justify-center gap-x-2  border border-transparent text-sm font-semibold hover:bg-rose-500 hover:text-white"
                     >
-                                <span className="py-4 inline-flex flex-1 items-cente justify-center gap-x-3 text-sm font-semibold hover:text-white">
-                        <LightBulbIcon
-                        className="h-5 w-5"
-                        aria-hidden="true"
-                      />
-                     Insights
+                      <span className="py-4 inline-flex flex-1 items-cente justify-center gap-x-3 text-sm font-semibold hover:text-white">
+                        <LightBulbIcon className="h-5 w-5" aria-hidden="true" />
+                        Insights
                       </span>
-                     
                     </Link>
                   </div>
                 </div>

@@ -20,6 +20,7 @@ export function MultiColumnChartContainer({categories,series}){
               <ChartCategoryAxisItem categories={categories}
             />
             </ChartCategoryAxis>
+            
             <ChartSeries  >
             {series.map((s) => (
             <ChartSeriesItem name={s.name} data={s.data} type="column" key={s.name} />

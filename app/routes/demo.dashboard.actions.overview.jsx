@@ -482,8 +482,7 @@ export default function Example() {
                   Exception Details
                 </h1>
               </div>
-              {selecteddetails.length > 0 && (
-                <div className="mr-2 mt-4 flex md:ml-4 md:mt-0">
+              {selecteddetails.length > 0 ? <div className="mr-2 mt-4 flex md:ml-4 md:mt-0">
                   <button
                     type="button"
                     className="text-md ml-3 inline-flex items-center rounded-md  bg-rose-500 px-3 py-2 font-semibold text-white shadow-sm hover:bg-rose-600 "
@@ -499,8 +498,7 @@ export default function Example() {
                   >
                     Resolution
                   </button>
-                </div>
-              )}
+                </div> : null}
             </div>
 
             <div className="bg-white pt-4">
@@ -587,9 +585,8 @@ export default function Example() {
                       {details.map((detail) => (
                         <tr key={detail} className="even:bg-gray-100">
                           <td className="relative px-7 sm:w-12 sm:px-6">
-                            {selecteddetails.includes(detail) && (
-                              <div className="absolute inset-y-0 left-0 w-0.5 bg-blue-500" />
-                            )}
+                            {selecteddetails.includes(detail) ?
+                              <div className="absolute inset-y-0 left-0 w-0.5 bg-blue-500" /> : null}
                             <input
                               type="checkbox"
                               className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-900"
